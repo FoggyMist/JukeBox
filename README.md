@@ -24,7 +24,7 @@ Plus, we can assume each and every person can use Slack.
 
 JavaScript based bot opens Slack RTM websocket and gathers information about all activities in it's team.
 
-**Yes, it sees mostly everything thats sent in group channels or private messages it is in.**
+**Yes, it sees mostly everything that is sent in group channels or private messages it is in.**
 
 **No, it does not send it anywhere and no data is stored outside browser's chache.**
 

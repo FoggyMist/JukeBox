@@ -1,5 +1,7 @@
 ./config.js
 config.js
+.jshintrc
+
 .DS_Store
 .DS_Store?
 ._*

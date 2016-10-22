@@ -161,8 +161,8 @@ class Bot {
             }
 
             console.log('no user found', userId, this.slackState.users);
-            setStatus('error');
-            return null;
+            this.setStatus('error');
+            return {username: 'no user found'};
         } else {
             return this.slackState.usersById[userId];
         }

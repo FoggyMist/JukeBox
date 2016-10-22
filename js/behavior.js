@@ -58,6 +58,14 @@ class Behavior {
                 this.bot.updateSlackState('channels', action.channel);
             break;
 
+            case 'presence_change':
+                if (action.presence == 'active') {
+
+                } else if (action.presence == 'away') {
+                    this.userWentOffline(action);
+                }
+            break;
+
             default:
                 console.log(action);
             break;
@@ -78,7 +86,10 @@ class Behavior {
     groupMessage(action) {
         let textBack = null;
 
-        if (action.text.indexOf(' ping ') + 1) {
+        if (action.text.indexOf(' help ') + 1) {
+            textBack = this.commands.help();
+
+        } else if (action.text.indexOf(' ping ') + 1) {
             textBack = this.commands.ping(action);
 
         } else if (action.text.indexOf('youtu') + 1) {
@@ -89,6 +100,12 @@ class Behavior {
 
         } else if (action.text.indexOf(' list ') + 1) {
             textBack = this.commands.list();
+
+        } else if (action.text.indexOf(' claimAdmin ') + 1) {
+            textBack = this.commands.claimAdmin(action);
+
+        } else if (action.text.indexOf(' listAdmins ') + 1) {
+            textBack = this.commands.listAdmins();
 
         } else if (action.text.indexOf(' pause ') + 1) {
             textBack = this.commands.pause();
@@ -137,6 +154,13 @@ class Behavior {
                 text: textBack,
                 channel: action.channel
             });
+        }
+    }
+
+    userWentOffline(action) {
+        let index = config.admins.indexOf(action.user);
+        if (index > -1) {
+            config.admins.splice(index, 1);
         }
     }
 }

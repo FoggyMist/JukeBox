@@ -16,6 +16,18 @@ class MusicQueue {
         };
     }
 
+    checkAdminPrivilages(userId) {
+        if (config.admins.includes(userId)) {
+            return true;
+        } else if (this.queue.byOrder.length > 0
+            && this.queue.byOrder[0].owner == userId
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     parseVideoId(url) {
         let ytId = null;
         let longUrlRegex = url.match(/(v=)[\w-_]+/);
@@ -324,9 +336,13 @@ class MusicQueue {
     }
 
     list() {
-        let textBack = 'Videos in queue: (1st is now playing)';
         let loop = 0;
         let loopEnd = this.queue.byOrder.length;
+        if (loopEnd == 0) {
+            return 'Queue is empty, nothing to list';
+        }
+
+        let textBack = 'Videos in queue: (1st is now playing)';
         while(loop < loopEnd) {
             let video = this.queue.byOrder[loop];
             textBack += '\n' + (loop+1) + ') _' + video.title + '_ (' + secondsToHumanTime(video.stop - video.start) + ')   debug ts: ' + video.timestamp + '\n';

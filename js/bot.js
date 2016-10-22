@@ -139,10 +139,24 @@ class Bot {
             let loopEnd = this.slackState.users.length;
             while (loop < loopEnd) {
                 let user = this.slackState.users[loop];
+                let username;
+                if (user.real_name != undefined) {
+                    username = user.real_name;
+                } else if (user.profile != undefined
+                    && user.profile.real_name != undefined
+                ) {
+                    username = user.profile.real_name;
+                } else {
+                    username = 'Uglyname von ' + user.name;
+                }
+
+                user.username = username;
+
                 if (user.id == userId) {
                     this.slackState.usersById[userId] = user;
                     return user;
                 }
+
                 loop++;
             }
 

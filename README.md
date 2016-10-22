@@ -2,6 +2,7 @@
 Integrates Slackbot websocket with YouTube api to allow queueing music on remote device via Slack chatroom, for your coworkers entertainment or suffering
 
 
+
 # What is it for?
 It is for very specific case: 
 
@@ -9,16 +10,20 @@ When you have a sound system with only one port plugget to only one source devic
 
 Plus, we can assume each and every person can use Slack.
 
+
+
 # How to use it?
 
 1. Copy files
 2. Change config.js data
-⋅⋅* Create new bot integration for your Slack team and obtain bot's api token/key
-⋅⋅* Create project in Google Developer Console, enable YouTuble api and obtain YouTube's api token/key
+  * Create new bot integration for your Slack team and obtain bot's api token/key
+  * Create project in Google Developer Console, enable YouTuble api and obtain YouTube's api token/key
 3. Launch index.html in browser
 4. Plug in your sound system's input cable
 5. Invite bot to any channel on Slack
 6. Send `help` message to a channel shared with bot for more info
+
+
 
 # How it works?
 

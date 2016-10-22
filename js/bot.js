@@ -15,7 +15,7 @@ class Bot {
 
         this.socket = null;
         this.sentDataId = 1;
-        this.slackState = null;
+        this.slackState = {};
         this.behavior = new Behavior(this);
         this.messageQueue = new MessageQueue();
     }
@@ -126,6 +126,31 @@ class Bot {
             && this.slackState[property].constructor == Array
         ) {
             this.slackState[property].push(value);
+        }
+    }
+
+    getUserById(userId) {
+        if (this.slackState.usersById == undefined) {
+            this.slackState.usersById = {};
+        }
+
+        if (this.slackState.usersById[userId] == undefined) {
+            let loop = 0;
+            let loopEnd = this.slackState.users.length;
+            while (loop < loopEnd) {
+                let user = this.slackState.users[loop];
+                if (user.id == userId) {
+                    this.slackState.usersById[userId] = user;
+                    return user;
+                }
+                loop++;
+            }
+
+            console.log('no user found', userId, this.slackState.users);
+            setStatus('error');
+            return null;
+        } else {
+            return this.slackState.usersById[userId];
         }
     }
 };

@@ -26,6 +26,6 @@ JavaScript based bot opens Slack RTM websocket and gathers information about all
 
 **Yes, it sees mostly everything thats sent in group channels or private messages it is in.**
 
-**No, it does not send it anywhere and no data is stored outside browsers chache.**
+**No, it does not send it anywhere and no data is stored outside browser's chache.**
 
 During connecting to Slack bot should also create few Youtube Iframe players in browser. After both things are done, bot starts to look for youtube links in chat messages, sends requests to Youtube api for more informations about them and queues them. First video from queue is supposed to be played in one of the Iframes (additional Iframe players are used to buffer videos before playing them for smoother transition).

@@ -186,7 +186,7 @@ class MusicQueue {
 
         let isVideoOrdered = false;
         let usersEncountered = [];
-        let totalVideosAddedFromCurrentUser = this.queue.byUser[video.owner].length - 1;
+        let totalVideosAddedFromCurrentUser = this.queue.byUser[video.owner].length;
         let firstVideoOwner = null
         let queuePosition = -1;
 
